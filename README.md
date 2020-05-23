@@ -4,23 +4,23 @@ This package implements Dictionary and Set data types as S3 objects. Internally 
 # Dictionary 
 The following methods are implemented for Dictionary class.
 
-    - `isEmpty(dict)`: check if dictionary is empty
+    * `isEmpty(dict)`: check if dictionary is empty
 
-    - `contains(dict, key)`: check if dictionary contains key
+    * `contains(dict, key)`: check if dictionary contains key
     
-    - `get(dict, key)`: get associated value for key
+    * `get(dict, key)`: get associated value for key
     
-    - `add(dict, key, val, overwrite=TRUE)`: add (key, val) pair to dictionary
+    * `add(dict, key, val, overwrite=TRUE)`: add (key, val) pair to dictionary
     
-    - `copy(dict)`: make a copy of dictionary
+    * `copy(dict)`: make a copy of dictionary
     
-    - `clear(dict)`: remove all entries in dictionary
+    * `clear(dict)`: remove all entries in dictionary
     
-    - `keys(dict)`: return a list of all keys
+    * `keys(dict)`: return a list of all keys
     
-    - `vals(dict)`: return a list of all values
+    * `vals(dict)`: return a list of all values
     
-    - `pop(dict)`: remove an entry from dictionary and return its value
+    * `pop(dict)`: remove an entry from dictionary and return its value
 
 Example:
 ```r
