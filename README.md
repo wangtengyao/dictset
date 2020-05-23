@@ -23,7 +23,7 @@ The following methods are implemented for Set class.
 * `vals(set)`: return a list of all elements in set
 * `pop(set)`: remove an entry from set and return its value
 
-Example:
+# Example
 ```r
 library(magrittr)
 dict <- Dictionary()
