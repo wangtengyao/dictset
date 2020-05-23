@@ -13,6 +13,16 @@ The following methods are implemented for Dictionary class.
 * `vals(dict)`: return a list of all values
 * `pop(dict)`: remove an entry from dictionary and return its value
 
+# Set 
+The following methods are implemented for Set class.
+* `isEmpty(set)`: check if set is empty
+* `contains(set, element)`: check if set contains element
+* `add(set, element)`: add element to set
+* `copy(set)`: make a copy of set
+* `clear(set)`: remove all entries in set
+* `vals(set)`: return a list of all elements in set
+* `pop(set)`: remove an entry from set and return its value
+
 Example:
 ```r
 library(magrittr)
@@ -26,6 +36,11 @@ while (! dict %>% isEmpty){
     lm <- dict %>% pop
     print(unname(lm$coefficients[2]))
 }
+
+set <- Set()
+set %>% add(dict)
+set %>% add(123)
+set
 ```
 
 
