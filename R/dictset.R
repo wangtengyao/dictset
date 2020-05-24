@@ -5,6 +5,7 @@
 #'
 #' @import stats
 #' @import digest
+#' @import utils
 NULL
 
 

@@ -1,0 +1,13 @@
+Package: dictset
+Type: Package
+Title: Dictionary and Set implementation 
+Version: 1.0
+Date: 2020-05-23
+Author: Tengyao Wang
+Maintainer: Tengyao Wang <tengyao.wang@ucl.ac.uk>
+Description: Accepts 
+Encoding: UTF-8
+Imports:
+	stats, digest, utils
+License: GPL-2
+RoxygenNote: 6.1.1
