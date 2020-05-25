@@ -32,11 +32,11 @@ contains <- function(x, ...) UseMethod('contains')
 #' @export
 get <- function(x, ...) UseMethod('get')
 
-#' Add element to Dictionary/Set
+#' put element to Dictionary/Set
 #' @param x Dictionary or Set
 #' @return invisible Dictionary/Set after change
 #' @export
-add <- function(x, ...) UseMethod('add')
+put <- function(x, ...) UseMethod('put')
 
 #' Copy a Dictionary/Set
 #' @param x Dictionary or Set
@@ -98,7 +98,7 @@ Dictionary <- function(keys=NULL, vals=NULL){
   dict <- structure(new.env(hash=TRUE), class='Dictionary')
 
   for (i in seq_along(keys)){
-    add(dict, keys[[i]], vals[[i]])
+    put(dict, keys[[i]], vals[[i]])
   }
 
   return(invisible(dict))
@@ -135,7 +135,7 @@ get.Dictionary <- function(dict, key){
   return(dict[[key_hash]]$val)
 }
 
-#' add a key/value pair to the dictionary
+#' put a key/value pair to the dictionary
 #' @param dict A Dictionary object
 #' @param key key to be added
 #' @param val associated value
@@ -143,7 +143,7 @@ get.Dictionary <- function(dict, key){
 #' @return a pointer to the updated Dictionary object
 #' @details the dictionary is updated in place
 #' @export
-add.Dictionary <- function(dict, key, val, overwrite=TRUE){
+put.Dictionary <- function(dict, key, val, overwrite=TRUE){
   key_hash <- md5(key)
   if (overwrite | !(key_hash %in% names(dict))) {
     dict[[key_hash]] <- list(key=key, val=val)
@@ -241,7 +241,7 @@ Set <- function(elements=NULL){
   set <- structure(new.env(hash=TRUE), class='Set')
 
   for (i in seq_along(elements)){
-    add(set, elements[[i]])
+    put(set, elements[[i]])
   }
 
   return(invisible(set))
@@ -265,12 +265,12 @@ contains.Set <- function(set, element){
   return(key_hash %in% names(set))
 }
 
-#' add an element to the set
+#' put an element to the set
 #' @param set A Set object
 #' @param element element to be added
 #' @return a pointer to the updated Set object
 #' @export
-add.Set <- function(set, element){
+put.Set <- function(set, element){
   key_hash <- md5(element)
   if (!(key_hash %in% names(set))) set[[key_hash]] <- element
   return(invisible(set))
