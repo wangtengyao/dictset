@@ -8,11 +8,20 @@
 #' @import utils
 NULL
 
+#' Check whether input is string
+#' @param x
+#' @return boolean for whether x is string
+#' @export
+isString <- function(x){
+  is.character(x) && (length(x) == 1)
+}
+
 
 #' Compute MD5 of R object
 #' @param obj R object
-#' @return MD5 of serialised object
-md5 <- function(obj) return(digest::digest(obj))
+#' @return if obj is a string, return itself, otherwise return its md5 value
+#' @export
+key_hash <- function(obj) ifelse(isString(obj), obj, digest::digest(obj))
 
 #' Check if Dictionary/Set is empty
 #' @param x Dictionary or Set
@@ -118,7 +127,7 @@ isEmpty.Dictionary <- function(dict){
 #' @return boolean
 #' @export
 contains.Dictionary <- function(dict, key){
-  key_hash <- md5(key)
+  key_hash <- key_hash(key)
   return(key_hash %in% names(dict))
 }
 
@@ -128,7 +137,7 @@ contains.Dictionary <- function(dict, key){
 #' @return value associated with the query key
 #' @export
 get.Dictionary <- function(dict, key){
-  key_hash <- md5(key)
+  key_hash <- key_hash(key)
   if (!(key_hash %in% names(dict))) {
     stop('No such key contained in dictionary')
   }
@@ -144,7 +153,7 @@ get.Dictionary <- function(dict, key){
 #' @details the dictionary is updated in place
 #' @export
 put.Dictionary <- function(dict, key, val, overwrite=TRUE){
-  key_hash <- md5(key)
+  key_hash <- key_hash(key)
   if (overwrite | !(key_hash %in% names(dict))) {
     dict[[key_hash]] <- list(key=key, val=val)
   }
@@ -200,7 +209,7 @@ pop.Dictionary <- function(dict, key=NULL){
     if (length(key_hashes) == 0) stop('Dictionary is empty.')
     key_hash <- key_hashes[1]
   } else {
-    key_hash <- md5(key)
+    key_hash <- key_hash(key)
   }
   if (!(key_hash %in% names(dict))) stop('No such key contained in dictionary')
 
@@ -261,7 +270,7 @@ isEmpty.Set <- function(set){
 #' @return boolean
 #' @export
 contains.Set <- function(set, element){
-  key_hash <- md5(element)
+  key_hash <- key_hash(element)
   return(key_hash %in% names(set))
 }
 
@@ -271,7 +280,7 @@ contains.Set <- function(set, element){
 #' @return a pointer to the updated Set object
 #' @export
 put.Set <- function(set, element){
-  key_hash <- md5(element)
+  key_hash <- key_hash(element)
   if (!(key_hash %in% names(set))) set[[key_hash]] <- element
   return(invisible(set))
 }
